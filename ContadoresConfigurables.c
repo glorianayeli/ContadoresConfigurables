@@ -13,7 +13,7 @@
 #endif
 int FlagSerial=0;
 char caracter;
-int contador;
+int contador,ContadorX=1,ContadorY=1;
 #INT_RDA
 void isr_rda(void)
 {
@@ -24,17 +24,52 @@ void isr_rda(void)
 void timer0(void)
 {
      contador++;
-     set_timer0(15536);
+     set_timer0(6);
 }
 void main()
 {
-   enable_interrupts(GLOBAL);
    enable_interrupts(INT_RDA);
+   enable_interrupts(int_timer0);
+   enable_interrupts(GLOBAL);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_4|RTCC_8_BIT);
+   set_timer0(6);
    set_tris_c(0x80);
+   set_tris_a(0x00);
+   set_tris_b(0x00);
+   set_tris_d(0x00);
    while(TRUE)
    {
       if(FlagSerial==1)
       {
+         if(caracter=='x'||caracter=='X')
+         {
+            if(Contadorx==1)
+            {
+               for(int ValorContador=1;ValorContador<=128;ValorContador*=2)
+               {
+                  output_a(ValorContador);
+               }
+            }
+            else if(ContadorX==2)
+            {
+               for(int ValorContador=1;ValorContador<=128;ValorContador*=2)
+               {
+                  output_b(ValorContador);
+               }
+            }
+            else if(ContadorX==3)
+            {
+               for(int ValorContador=1;ValorContador<=128;ValorContador*=2)
+               {
+                  output_d(ValorContador);
+               }
+            }
+            else if(ContadorX==4)
+            {  
+               ContadorX=1;
+            }
+         }
+         
       }
    }
 
