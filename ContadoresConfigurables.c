@@ -39,6 +39,14 @@ void main()
    set_tris_d(0x00);
    while(TRUE)
    {
+      if(caracter=='X'||caracter=='x')
+      {
+         ContadorX++;
+      } 
+      else if(caracter=='y'||caracter=='Y')
+      {
+         ContadorY++;
+      }
       if(FlagSerial==1)
       {
          if(caracter=='x'||caracter=='X')
