@@ -13,7 +13,7 @@
 #endif
 int FlagSerial=0;
 char caracter;
-int contador,ContadorX=1,ContadorY=1,InicioIzquierda=0,InicioDerecha=0;
+int contador,ContadorX=0,ContadorY=0,InicioIzquierda=0,InicioDerecha=0;
 #INT_RDA
 void isr_rda(void)
 {
@@ -85,7 +85,7 @@ void main()
                ContadorX=1;
             }
          }
-         else if(caracter=='y'||caracter=='Y')
+         else if((caracter=='y'||caracter=='Y')&&(InicioDerecha==1))
          {
             if(ContadorY==1||ContadorY==3)
             {
@@ -112,7 +112,64 @@ void main()
             {  
                ContadorY=1;
             }
-         }         
+         }
+         //Derecha
+         if((caracter=='x'||caracter=='X')&&(InicioIzquierda==1))
+         {
+            if(Contadorx==1)
+            {
+               for(int ValorContador=128;ValorContador>=1;ValorContador/=2)
+               {
+                  output_a(ValorContador);
+               }
+            }
+            else if(ContadorX==2)
+            {
+               for(int ValorContador=128;ValorContador>=1;ValorContador/=2)
+               {
+                  output_b(ValorContador);
+               }
+            }
+            else if(ContadorX==3)
+            {
+               for(int ValorContador=128;ValorContador>=1;ValorContador/=2)
+               {
+                  output_d(ValorContador);
+               }
+            }
+            else if(ContadorX==4)
+            {  
+               ContadorX=1;
+            }
+         }
+         else if((caracter=='y'||caracter=='Y')&&(InicioIzquierda==1))
+         {
+            if(ContadorY==1||ContadorY==3)
+            {
+               for(int ValorContador=128;ValorContador>=1;ValorContador/=2)
+               {
+                  output_d(ValorContador);
+               }
+            }
+            else if(ContadorY==2||ContadorY==1)
+            {
+               for(int ValorContador=128;ValorContador>=1;ValorContador/=2)
+               {
+                  output_b(ValorContador);
+               }
+            }
+            else if(ContadorY==3)
+            {
+               for(int ValorContador=128;ValorContador>=1;ValorContador/=2)
+               {
+                  output_a(ValorContador);
+               }
+            }
+            else if(ContadorY==4)
+            {  
+               ContadorY=1;
+            }
+         }
       }
    }
 
