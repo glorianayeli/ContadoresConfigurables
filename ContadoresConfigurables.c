@@ -77,6 +77,34 @@ void main()
                ContadorX=1;
             }
          }
+         if(caracter=='y'||caracter=='Y')
+         {
+            if(ContadorY==1||ContadorY==3)
+            {
+               for(int ValorContador=1;ValorContador<=128;ValorContador*=2)
+               {
+                  output_d(ValorContador);
+               }
+            }
+            else if(ContadorY==2||ContadorY==1)
+            {
+               for(int ValorContador=1;ValorContador<=128;ValorContador*=2)
+               {
+                  output_b(ValorContador);
+               }
+            }
+            else if(ContadorY==3)
+            {
+               for(int ValorContador=1;ValorContador<=128;ValorContador*=2)
+               {
+                  output_a(ValorContador);
+               }
+            }
+            else if(ContadorY==4)
+            {  
+               ContadorY=1;
+            }
+         }
          
       }
    }
