@@ -13,7 +13,7 @@
 #endif
 int FlagSerial=0;
 char caracter;
-int contador,ContadorX=1,ContadorY=1;
+int contador,ContadorX=1,ContadorY=1,InicioIzquierda=0,InicioDerecha=0;
 #INT_RDA
 void isr_rda(void)
 {
@@ -47,9 +47,17 @@ void main()
       {
          ContadorY++;
       }
+      else if(caracter=='d'||caracter=='D')
+      {
+         InicioDerecha=1;
+      }
+      else if(caracter=='i'||caracter=='I')
+      {
+         InicioIzquierda=1;
+      }
       if(FlagSerial==1)
       {
-         if(caracter=='x'||caracter=='X')
+         if((caracter=='x'||caracter=='X')&&(InicioDerecha==1))
          {
             if(Contadorx==1)
             {
@@ -77,7 +85,7 @@ void main()
                ContadorX=1;
             }
          }
-         if(caracter=='y'||caracter=='Y')
+         else if(caracter=='y'||caracter=='Y')
          {
             if(ContadorY==1||ContadorY==3)
             {
@@ -104,8 +112,7 @@ void main()
             {  
                ContadorY=1;
             }
-         }
-         
+         }         
       }
    }
 
